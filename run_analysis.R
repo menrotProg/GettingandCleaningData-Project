@@ -22,7 +22,7 @@ Activity<-read.table("UCI HAR Dataset/train/Y_train.txt", header = FALSE)
 ## Convert numeric activities to factors
 Activity2 <- data.frame(apply(Activity, 2, as.factor))
 
-## Convert Activity factors to descriptive factors - task #3
+## Convert Activity factors to descriptive factors - Step #3
 levels(Activity2[,1]) <- ActivityLabels[,2]
 
 #read train measurements data
@@ -45,7 +45,7 @@ Activity<-read.table("UCI HAR Dataset/test/Y_test.txt", header = FALSE)
 ## Convert numeric activities to factors
 Activity2 <- data.frame(apply(Activity, 2, as.factor))
 
-## Convert Activity factors to descriptive factors - task #3
+## Convert Activity factors to descriptive factors - Step #3
 levels(Activity2[,1]) <- ActivityLabels[,2]
 
 #read test measurements data
@@ -58,7 +58,7 @@ TestDF <- cbind(Subjects, Activity2, Measurements)
 	
 #########################################################
 ##
-## Merge the two data sets - Task #1
+## Merge the two data sets - Step #1
 ##
 #########################################################
 
@@ -66,7 +66,7 @@ MergedDF <- rbind(TrainDF, TestDF)
 
 #########################################################
 ### add descriptive variable names, based on the feature.txt file
-###   Task #4
+###   Step #4
 #########################################################
 
 ## Name the Subject and Activity columns
@@ -83,12 +83,12 @@ colnames(MergedDF)<-cols[,2]
 
 ###################################################
 ##
-## Extract only the mean and std columns - task #2
+## Extract only the mean and std columns - Step #2
 ##
 ###################################################
 
-logicalVec1 <- grepl("mean", names(MergedDF))
-logicalVec2 <- grepl("std", names(MergedDF))
+logicalVec1 <- grepl("mean", names(MergedDF), ignore.case=TRUE)
+logicalVec2 <- grepl("std", names(MergedDF), ignore.case=TRUE)
 
 logicalVec <- logicalVec1 | logicalVec2
 
@@ -103,7 +103,7 @@ ExtractedDF <- MergedDF[, logicalVec]
 ##
 ## Calculate the average for each Sunject and each Activity - total of 180 rows 
 ##  (30 subjects 8 6 Activities)
-##  This is task #5
+##  This is Step #5
 ##############################################################
 
 
