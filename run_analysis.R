@@ -34,7 +34,8 @@ Subjects <- read.table("UCI HAR Dataset/train/subject_train.txt", header = FALSE
 Activity<-read.table("UCI HAR Dataset/train/Y_train.txt", header = FALSE)
 
 ## Convert numeric activities to factors
-Activity2 <- data.frame(apply(Activity, 2, as.factor))
+Activity2 <- Activity
+Activity2$V1 <- as.factor(Activity2$V1)
 
 ## Convert Activity factors to descriptive factors - Step #3
 levels(Activity2[,1]) <- ActivityLabels[,2]
@@ -57,7 +58,8 @@ Subjects <- read.table("UCI HAR Dataset/test/subject_test.txt", header = FALSE)
 Activity<-read.table("UCI HAR Dataset/test/Y_test.txt", header = FALSE)
 
 ## Convert numeric activities to factors
-Activity2 <- data.frame(apply(Activity, 2, as.factor))
+Activity2 <- Activity
+Activity2$V1 <- as.factor(Activity2$V1)
 
 ## Convert Activity factors to descriptive factors - Step #3
 levels(Activity2[,1]) <- ActivityLabels[,2]
